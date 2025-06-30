@@ -68,7 +68,7 @@ Before getting started, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone <https://github.com/PawishrajhenAR/RAG-DocChatApp.git>
+   git clone https://github.com/PawishrajhenAR/RAG-DocChatApp.git
    cd llm-Rag
    ```
 
