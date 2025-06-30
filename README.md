@@ -279,9 +279,9 @@ Special thanks to the following open-source projects that make this possible:
 
 **PAWISHRAJHEN A R**
 
-- GitHub: [PawishrajhenAR](https://github.com/PawishrajhenAR)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/pawish6364/)
-- Email: your.email@example.com
+- [Github](https://github.com/PawishrajhenAR)
+- [LinkedIn](https://www.linkedin.com/in/pawish6364/)
+- Email: pawishgpt@gmail.com
 
 ---
 
