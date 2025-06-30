@@ -6,8 +6,6 @@
 
 A powerful Streamlit application for document processing and AI-powered question answering using Retrieval-Augmented Generation (RAG) with Ollama. Transform your documents into an intelligent, searchable knowledge base.
 
-![RAG Chat Assistant Demo](https://via.placeholder.com/800x400?text=RAG+Chat+Assistant+Demo)
-
 ## ✨ Features
 
 ### 📄 Document Processing
