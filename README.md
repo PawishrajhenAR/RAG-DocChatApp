@@ -1,319 +1,296 @@
 # 🤖 RAG Chat Assistant
 
-A powerful Streamlit application for document processing and AI-powered question answering using Retrieval-Augmented Generation (RAG) with Ollama. This application allows you to upload documents, process them, and get AI-powered answers based on the content of your documents.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## ✨ Key Features
+A powerful Streamlit application for document processing and AI-powered question answering using Retrieval-Augmented Generation (RAG) with Ollama. Transform your documents into an intelligent, searchable knowledge base.
 
-### Core Features
-- **Multi-format Document Support**: Upload and process PDF, DOCX, and TXT files with automatic format detection
-- **Intelligent Text Processing**: Advanced text splitting with semantic chunking and cleaning
-- **Hybrid Search**: Combines dense embeddings (FAISS) and sparse TF-IDF for optimal retrieval
-- **AI-Powered Answers**: Uses Ollama's Phi3 model for accurate, context-aware responses
-- **Document OCR**: Extract text from scanned PDFs and images using Tesseract OCR
-- **Streaming Responses**: Real-time streaming of AI responses for better user experience
-- **Session Management**: Persistent chat history and document state across sessions
+![RAG Chat Assistant Demo](https://via.placeholder.com/800x400?text=RAG+Chat+Assistant+Demo)
 
-### Advanced Features
-- **Document Metadata Extraction**: Automatically extracts and indexes document metadata
-- **Contextual Answers**: Provides source citations and confidence scores
-- **Batch Processing**: Process multiple documents simultaneously
-- **Configurable Chunking**: Customize text chunk size and overlap
-- **Asynchronous Processing**: Non-blocking document processing
-- **Error Handling**: Comprehensive error handling and user feedback
-- **Responsive Design**: Works on both desktop and mobile devices
+## ✨ Features
+
+### 📄 Document Processing
+- **Multi-format Support**: PDF, DOCX, and TXT files
+- **OCR Capabilities**: Extract text from scanned PDFs and images using Tesseract OCR
+- **Batch Processing**: Handle multiple documents simultaneously
+- **Intelligent Text Cleaning**: Automated preprocessing and normalization
+
+### 🔍 Advanced Search
+- **Hybrid Search Engine**: Combines dense embeddings (FAISS) with sparse TF-IDF retrieval
+- **Semantic Chunking**: Smart text segmentation with configurable chunk size and overlap
+- **High-Quality Embeddings**: Powered by Sentence Transformers
+
+### 🤖 AI-Powered Responses
+- **Context-Aware Answers**: Leverages Ollama's Phi3 model for intelligent responses
+- **Source Citations**: Every answer includes relevant document references
+- **Confidence Scores**: Transparent relevance scoring for retrieved content
+
+### 💬 User Experience
+- **Persistent Chat History**: Maintains conversation context across sessions
+- **Session Management**: Easy data reset and chat clearing
+- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Real-time Processing**: Live status updates and error handling
 
 ## 🏗️ Project Structure
 
 ```
 llm-Rag/
-├── app.py                  # Main Streamlit application
-├── requirements.txt        # Production dependencies
-├── README.md              # This file
-└── utils/                 # Core application modules
+├── app.py                    # Main Streamlit application
+├── requirements.txt          # Python dependencies
+├── README.md                # Project documentation
+├── LICENSE                  # MIT license file
+└── utils/                   # Core functionality modules
     ├── __init__.py
-    ├── rag.py             # RAG system implementation
-    ├── embedding.py       # Document embedding and search
-    ├── text_splitter.py   # Intelligent text chunking
-    ├── pdf_reader.py      # PDF text extraction
-    ├── docx_reader.py    # Word document processing
-    ├── ollama_llm.py     # Ollama LLM integration
-    └── chat_interface.py # Chat UI management
-```
-
-## 🚀 Deployment
-
-### Prerequisites
-
-- Python 3.8+
-- Ollama installed and running locally
-- Tesseract OCR installed (for PDF OCR support)
-- At least 4GB RAM (8GB recommended for large documents)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd llm-Rag
-   ```
-
-2. **Set up a virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Install Tesseract OCR**
-   - **Windows**: Download installer from [UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki)
-   - **macOS**: `brew install tesseract`
-   - **Linux (Ubuntu/Debian)**: `sudo apt install tesseract-ocr`
-
-5. **Set up Ollama**
-   - Download and install from [ollama.ai](https://ollama.ai)
-   - Start the Ollama service
-   - Pull the required model:
-     ```bash
-     ollama pull phi3
-     ```
-
-### Running in Production
-
-1. **Start the application**
-   ```bash
-   streamlit run app.py --server.port=8501 --server.address=0.0.0.0
-   ```
-
-2. **Access the application**
-   Open your browser and navigate to `http://localhost:8501`
-
-### Environment Variables
-
-Configure the application using these environment variables:
-
-```bash
-# Ollama Configuration
-OLLAMA_API_BASE=http://localhost:11434
-OLLAMA_MODEL=phi3
-
-# Application Settings
-CHUNK_SIZE=1000
-CHUNK_OVERLAP=200
-MAX_DOCS=100
-
-# Optional: Enable debug mode
-DEBUG=false
+    ├── rag.py               # RAG system orchestration
+    ├── embedding.py         # Embedding generation & search
+    ├── text_splitter.py     # Document chunking logic
+    ├── pdf_reader.py        # PDF text extraction
+    ├── docx_reader.py       # DOCX processing
+    ├── ollama_llm.py        # Ollama LLM integration
+    └── chat_interface.py    # Chat UI components
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-1. **Python 3.8+** installed on your system
-2. **Ollama** installed and running locally
-3. **Phi3 model** pulled in Ollama
+Before getting started, ensure you have the following installed:
+
+- **Python 3.8+** - [Download Python](https://python.org/downloads/)
+- **Ollama** - [Install Ollama](https://ollama.ai/download)
+- **Tesseract OCR** - Required for PDF OCR functionality
+  - **Ubuntu/Debian**: `sudo apt install tesseract-ocr`
+  - **macOS**: `brew install tesseract`
+  - **Windows**: [Download installer](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ### Installation
 
-1. **Clone the repository**:
+1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/yourusername/llm-Rag.git
    cd llm-Rag
    ```
 
-2. **Create a virtual environment**:
+2. **Create and activate virtual environment**
    ```bash
-   python -m venv llm
+   # Create virtual environment
+   python -m venv venv
+   
+   # Activate (Linux/macOS)
+   source venv/bin/activate
+   
+   # Activate (Windows)
+   venv\Scripts\activate
    ```
 
-3. **Activate the virtual environment**:
-   - **Windows**:
-     ```bash
-     llm\Scripts\activate
-     ```
-   - **macOS/Linux**:
-     ```bash
-     source llm/bin/activate
-     ```
-
-4. **Install dependencies**:
+3. **Install Python dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Install and start Ollama**:
-   - Download from [ollama.ai](https://ollama.ai)
-   - Install and start the service
-   - Pull the Phi3 model:
-     ```bash
-     ollama pull phi3
-     ```
-
-### Running the Application
-
-1. **Start the Streamlit app**:
+4. **Set up Ollama**
    ```bash
-   streamlit run app.py
+   # Start Ollama service
+   ollama serve
+   
+   # Pull the Phi3 model (in a new terminal)
+   ollama pull phi3
    ```
 
-2. **Open your browser** and navigate to `http://localhost:8501`
+### Launch the Application
 
-3. **Upload documents** using the sidebar file uploader
-
-4. **Process documents** and build the search index
-
-5. **Start chatting** with your documents!
-
-## 📖 Usage Guide
-
-### 1. Document Upload
-- Use the sidebar to upload PDF, DOCX, or TXT files
-- Multiple files can be uploaded simultaneously
-- Click "Process Documents" to extract and chunk the text
-
-### 2. Building the Search Index
-- After processing documents, click "Build Search Index"
-- This creates embeddings and enables document search
-- The system uses hybrid search (dense + sparse) for better results
-
-### 3. Asking Questions
-- Type your questions in the chat interface
-- The system will:
-  - Search for relevant document chunks
-  - Provide context to the AI
-  - Generate accurate, contextual answers
-
-### 4. Managing Your Session
-- View system status in the sidebar
-- Export chat history as Markdown
-- Clear chat or all data as needed
-
-## 🏗️ Architecture
-
-The application is built with a modular architecture:
-
-```
-app.py                    # Main Streamlit application
-├── utils/
-│   ├── rag.py           # RAG system orchestration
-│   ├── embedding.py     # Document embedding and search
-│   ├── text_splitter.py # Intelligent text chunking
-│   ├── pdf_reader.py    # PDF text extraction
-│   ├── ollama_llm.py    # Ollama LLM integration
-│   └── chat_interface.py # Chat UI management
+```bash
+streamlit run app.py
 ```
 
-### Key Components
+🎉 **Success!** Open your browser and navigate to [http://localhost:8501](http://localhost:8501)
 
-- **RAGSystem**: Orchestrates the complete RAG pipeline
-- **EnhancedEmbeddingIndex**: Hybrid search with FAISS and TF-IDF
-- **EnhancedTextSplitter**: Intelligent document chunking
-- **EnhancedPDFReader**: Robust PDF text extraction
-- **OllamaLLM**: Clean Ollama API integration
-- **ChatInterface**: Streamlit chat UI management
+## 📖 How to Use
 
-## 🔧 Configuration
+### 1. Upload Documents
+- Use the sidebar file uploader to select your documents
+- Supported formats: PDF, DOCX, TXT
+- Multiple files can be processed simultaneously
 
-### Model Settings
-- Default model: `phi3`
-- Ollama URL: `http://localhost:11434`
-- Chunk size: 1000 characters
-- Chunk overlap: 200 characters
+### 2. Process Documents
+- Click **"Process Documents"** to extract and clean text
+- The system will automatically handle OCR for scanned documents
+- Monitor progress through real-time status updates
 
-### Search Settings
-- Hybrid search enabled by default
-- Dense embedding model: `all-MiniLM-L6-v2`
-- Maximum search results: 5 documents
+### 3. Build Search Index
+- Click **"Build Search Index"** to create embeddings
+- This enables semantic search across your document collection
+- Index building may take a few moments for large documents
 
-## 🛠️ Troubleshooting
+### 4. Start Chatting
+- Use the chat interface to ask questions about your documents
+- Receive contextual answers with source citations
+- View confidence scores for retrieved information
+
+### 5. Manage Your Session
+- **Clear Chat**: Remove conversation history
+- **Reset Data**: Start fresh with new documents
+- **View Status**: Check processing and indexing status
+
+## 🛠️ Configuration
+
+### Customizing Chunk Settings
+
+Modify chunking parameters in your configuration:
+
+```python
+# In utils/text_splitter.py
+CHUNK_SIZE = 1000        # Characters per chunk
+CHUNK_OVERLAP = 200      # Overlap between chunks
+```
+
+### Changing the LLM Model
+
+Switch to different Ollama models:
+
+```python
+# In utils/ollama_llm.py
+MODEL_NAME = "llama2"    # Or any other Ollama model
+```
+
+## 📊 API Usage
+
+For programmatic access, use the RAG system directly:
+
+```python
+from utils.rag import RAGSystem
+
+# Initialize the system
+rag = RAGSystem(model_name="phi3")
+
+# Process a document
+rag.process_document("path/to/your/document.pdf")
+
+# Build search index
+rag.build_index()
+
+# Ask questions
+result = rag.ask_question("What are the main findings in this document?")
+print(f"Answer: {result['answer']}")
+print(f"Sources: {result['sources']}")
+```
+
+## 🔧 Troubleshooting
 
 ### Common Issues
 
-1. **Ollama Connection Error**
-   - Ensure Ollama is running: `ollama serve`
-   - Check if the model is pulled: `ollama list`
-   - Verify the API endpoint is accessible
-
-2. **Document Processing Failures**
-   - Check file format support (PDF, DOCX, TXT)
-   - Ensure files contain extractable text
-   - Verify file permissions
-
-3. **Search Index Build Failures**
-   - Ensure documents were processed successfully
-   - Check available memory for large documents
-   - Verify sentence-transformers model download
-
-4. **Slow Performance**
-   - Reduce chunk size for faster processing
-   - Use smaller documents for testing
-   - Ensure adequate system resources
-
-### Debug Information
-The application provides detailed logging and status information:
-- System status in the sidebar
-- Processing progress indicators
-- Error messages with context
-- Document processing summaries
-
-## 📝 API Reference
-
-### RAGSystem Class
-```python
-rag = RAGSystem(model_name="phi3")
-
-# Process documents
-result = rag.process_document("path/to/document.pdf")
-
-# Build search index
-result = rag.build_index()
-
-# Ask questions
-result = rag.ask_question("What is the main topic?")
+**🔴 Ollama Connection Error**
+```
+Solution: Ensure Ollama is running with `ollama serve`
+Check if the model is available with `ollama list`
 ```
 
-### ChatInterface Class
-```python
-chat = ChatInterface()
+**🔴 Document Processing Failures**
+```
+Solution: Verify file format and ensure files aren't corrupted
+Check file permissions and size limits
+```
 
-# Add messages
-chat.add_user_message("Hello")
-chat.add_assistant_message("Hi there!")
+**🔴 OCR Not Working**
+```
+Solution: Install Tesseract OCR for your operating system
+Verify installation with `tesseract --version`
+```
 
-# Display interface
-chat.display_chat_history()
-## 🙏 Acknowledgments
+**🔴 Slow Performance**
+```
+Solution: Reduce document size or decrease chunk size
+Consider using a more powerful machine for large datasets
+```
 
-- [Ollama](https://ollama.ai) for the local LLM infrastructure
-- [Streamlit](https://streamlit.io) for the web framework
-- [Sentence Transformers](https://www.sbert.net/) for embeddings
-- [FAISS](https://github.com/facebookresearch/faiss) for similarity search
-- [LangChain](https://langchain.com/) for text processing utilities
+### Performance Tips
+
+- **Optimize chunk size**: Smaller chunks = faster processing, larger chunks = better context
+- **Use SSD storage**: Faster file I/O improves processing speed
+- **Sufficient RAM**: Embedding generation is memory-intensive
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make changes and test thoroughly**
+4. **Commit changes**: `git commit -m 'Add amazing feature'`
+5. **Push to branch**: `git push origin feature/amazing-feature`
+6. **Open a Pull Request**
+
+### Development Setup
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest tests/
+
+# Format code
+black utils/ app.py
+
+# Lint code
+flake8 utils/ app.py
+```
+
+## 📋 Requirements
+
+### Python Dependencies
+- `streamlit >= 1.28.0`
+- `sentence-transformers >= 2.2.0`
+- `faiss-cpu >= 1.7.4`
+- `pypdf2 >= 3.0.0`
+- `python-docx >= 0.8.11`
+- `scikit-learn >= 1.3.0`
+- `pytesseract >= 0.3.10`
+- `pillow >= 10.0.0`
+- `requests >= 2.31.0`
+
+### System Dependencies
+- Tesseract OCR
+- Ollama with Phi3 model
+
+## 🌟 Roadmap
+
+- [ ] **Multi-language Support**: Add support for non-English documents
+- [ ] **Cloud Integration**: AWS S3, Google Drive connectors
+- [ ] **Advanced Analytics**: Document similarity analysis
+- [ ] **Export Features**: Save conversations and insights
+- [ ] **REST API**: Full API endpoints for integration
+- [ ] **Docker Support**: Containerized deployment
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+## 🙏 Acknowledgments
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Special thanks to the following open-source projects that make this possible:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- [**Ollama**](https://ollama.ai) - Local LLM inference
+- [**Streamlit**](https://streamlit.io) - Web application framework
+- [**Sentence Transformers**](https://www.sbert.net/) - Semantic embeddings
+- [**FAISS**](https://github.com/facebookresearch/faiss) - Efficient similarity search
+- [**Tesseract OCR**](https://github.com/tesseract-ocr/tesseract) - Optical character recognition
 
-## 📝 Conclusion
+## 👨‍💻 Author
 
-This RAG Chat Assistant provides a powerful way to interact with your documents using natural language. With its modular architecture, it's easy to extend and customize for various use cases. Whether you're a researcher, student, or professional, this tool can help you quickly find information across multiple documents through an intuitive chat interface.
+**PAWISHRAJHEN A R**
 
-For support or feature requests, please open an issue on the GitHub repository.
+- GitHub: [PawishrajhenAR](https://github.com/PawishrajhenAR)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/pawish6364/)
+- Email: your.email@example.com
 
 ---
 
-Built using Python, Streamlit, and Ollama by PAWISHRAJHEN A R
+<div align="center">
+
+**⭐ If this project helped you, please give it a star! ⭐**
+
+*Built with ❤️ using Python, Streamlit, and Ollama*
+
+</div>
